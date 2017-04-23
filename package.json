@@ -1,0 +1,22 @@
+{
+  "name": "whatslinux",
+  "version": "1.0.0",
+  "description": "whatsapp wrapper for linux",
+  "main": "main.js",
+  "keywords": [
+    "electron",
+    "whats",
+    "app"
+  ],
+  "author": "Tim Schrodi",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "1.6.5",
+    "electron-builder": "17.0.1",
+    "electron-packager": "8.6.0",
+    "gulp": "3.9.1",
+    "gulp-eslint": "3.0.1",
+    "gulp-if": "2.0.2"
+  },
+  "dependencies": {}
+}

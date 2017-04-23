@@ -1,0 +1,26 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "impliedStrict": true
+        }
+    },
+    "env": {
+        "es6": true,
+        "node": true
+    },
+    "rules": {
+        "semi": "error",
+        "no-console": "error",
+        "no-unreachable": "error",
+        "default-case": "warn",
+        "no-alert": "error",
+        "no-empty-function": "error",
+        "no-eval": "error",
+        "no-unused-vars": "warn",
+        "block-spacing": "error",
+        "camelcase": "warn",
+        "quotes": ["error", "single"]
+    }
+}
