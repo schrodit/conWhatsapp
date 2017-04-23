@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=WhatsApp
+Exec=/usr/bin/whatsapp
+Icon=/usr/share/conWhatsapp/resources/app/whatsapp.png
+Type=Application
+Categories=GTK;GNOME;Utility;

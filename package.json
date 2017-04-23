@@ -1,12 +1,11 @@
 {
-  "name": "whatslinux",
+  "name": "conWhatsapp",
   "version": "1.0.0",
   "description": "whatsapp wrapper for linux",
   "main": "main.js",
   "keywords": [
     "electron",
-    "whats",
-    "app"
+    "whatsapp"
   ],
   "author": "Tim Schrodi",
   "license": "MIT",
