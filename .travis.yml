@@ -6,9 +6,8 @@ node_js:
   - "7"
 
 install:
-  - npm install -g bower
-  - npm install -g gulp
-  - npm install -g polymer-cli
+  - sudo apt-get install jq
+  - npm install -g bower gulp electron-packager polymer-cli
   - npm install
   - cd app/ui
   - bower install
@@ -17,8 +16,6 @@ script:
 
 
 before_deploy:
-  - apt-get install jq
-  - npm install -g bower gulp electron-packager
   - npm install
   - bower install
   - gulp
