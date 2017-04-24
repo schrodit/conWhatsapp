@@ -34,4 +34,4 @@ deploy:
   skip_cleanup: "true"
   on:
     branch: release
-    repo: sp-convey/convey-polymer-elements
+    repo: sp-convey/conWhatsapp
