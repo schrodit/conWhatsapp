@@ -96,7 +96,7 @@ function createWindow () {
     
     win.loadURL('https://web.whatsapp.com/');
 
-
+    // register events
     win.on('close', (event) => {
         if( !app.isQuiting && cfg.runInBackground){
             event.preventDefault();
@@ -106,14 +106,21 @@ function createWindow () {
         }
         return false;
     });
+
+    // open links in external defualt browser
+    webContents.on('new-window', function(event, url){
+        event.preventDefault();
+        shell.openExternal(url);
+    });
+
 }
 
 app.on('ready', ()=> {
     //get home dir
     home = app.getPath('home');
     //register global events
-    ipcMain.on('openInBrowser', (event, arg) => {
-        shell.openExternal(arg);
+    ipcMain.on('openInBrowser', (event, url) => {
+        shell.openExternal(url);
     });
     createWindow();
 });
