@@ -1,6 +1,7 @@
 'use strict';
 const gulp = require('gulp');
 const gulpIf = require('gulp-if');
+const bump = require('gulp-bump');
 const eslint = require('gulp-eslint');
 
 gulp.task('lint', () => {
@@ -13,6 +14,15 @@ gulp.task('lint', () => {
 
 gulp.task('default', ['lint'], function () {
     // This will only run if the lint task is successful... 
+});
+
+gulp.task('bump', () => {
+    gulp.src('./package.json')
+    .pipe(bump())
+    .pipe(gulp.dest('./'));
+    gulp.src('./app/package.json')
+    .pipe(bump())
+    .pipe(gulp.dest('./app/'));
 });
 
 
