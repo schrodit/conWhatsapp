@@ -1,0 +1,16 @@
+sudo: required
+dist: trusty
+
+language: node_js
+node_js:
+  - "7"
+
+install:
+  - npm install -g bower
+  - npm install -g gulp
+  - npm install -g polymer-cli
+  - npm install
+  - cd ui
+  - bower install
+script: 
+  - gulp
