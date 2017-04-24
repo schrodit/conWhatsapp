@@ -10,7 +10,7 @@ install:
   - npm install -g gulp
   - npm install -g polymer-cli
   - npm install
-  - cd ui
+  - cd app/ui
   - bower install
 script: 
   - gulp
