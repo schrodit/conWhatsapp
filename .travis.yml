@@ -17,7 +17,7 @@ script:
 
 
 before_deploy:
-  - gulp
+  - ls
   - chmod +x release/set_tags.sh
   - chmod +x release/make_release.sh
   - sh release/set_tags.sh
