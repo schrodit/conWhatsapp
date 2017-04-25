@@ -25,7 +25,7 @@ gulp.task('version:bump', () => {
     .pipe(gulp.dest('./app/'));
 });
 
-gulp('version:tag', () => {
+gulp.task('version:tag', () => {
     var pjson = require('./package.json');
     git.tag(pjson.version, 'Travis bumped new version', function (err) {
         if (err) throw err;
