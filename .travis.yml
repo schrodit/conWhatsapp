@@ -23,7 +23,7 @@ before_deploy:
   - electron-packager app/ conWhatsapp --platform=linux --arch=x64
   - sh release/make_release.sh
 deploy:
-  provider: release
+  provider: releases
   api_key:
     secure: KpBjMUlS5s9e2RDT5UDZD3Lm2sJ5LOXT9fsgLIohV05aKGkl8BakqCty/ZxNYhgNfcHzVN/hu38Jx8FtOBYJeeUwY10ERImMo+7mS5PPs4dxtvOWGUK+6D0oljZOtu1nloHkymVUUCb0bcL1hOcr0H4i2vK60M8FWBH04IhX8Uw/vhBAHPCDeFHN+sWBrtRoQR9HwWwNDqVYBefFzk3EgEfVMSAPosdvu0kFsNAy76534AaN32y/NZty0Rm2SH9N2UZYelzH9Rl5IYAdmDHGDPlu5WCgRGKj33f4sTGoHvOnE7cq48iW/vXI/4eZ6bc+G7bV7MBjbi+gCfvOwK5j6hDoWfUlsvE+bqrFMHdDgCpp2/oa2GVZ17g8lYeHVRel9/L4p9Wqv0t6W3/8U3L2HErMNgEr96jU9lTZ8QiYnn2hipMzEwkvE5HE9NDNXPe+4tqTxT4tm6u9nnI5ieq5Icm1mAaUxpjVazDH8uTUaNmKqiN+Bc9ahEa2QcC3Jd7L3OsAKoPD6Q2N3FNlJDapuCYNB7FGpRGp+gXAEk5FBA2kZ+RTcNp14lygjbfN5A7bN2X2/ean+nJv+f7UfurWwhnweUyotX9ygde+aOfTx2uYnQe3hrP6ohGFUmEpAQ/no6SRRuXBNms+w+Vm2Ji4neQdmUdUV7n70Zbfh5dYAKo=
   file_glob: true
