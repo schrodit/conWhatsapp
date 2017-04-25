@@ -1,6 +1,8 @@
 'use strict';
 const gulp = require('gulp');
 const gulpIf = require('gulp-if');
+const runSequence = require('run-sequence');
+const git = require('gulp-git');
 const bump = require('gulp-bump');
 const eslint = require('gulp-eslint');
 
@@ -32,9 +34,9 @@ gulp.task('version:tag', () => {
     });
 });
 
-gulp.task('version:publish', gulp.series('version:bump', 'version:tag', function(done) {
-  done();
-}));
+gulp.task('version:publish', function() {
+    runSequence('version:bump', 'version:tag');
+});
 
 function isFixed(file) {
 	// Has ESLint fixed the file contents?
