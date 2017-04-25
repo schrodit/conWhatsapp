@@ -17,10 +17,9 @@ script:
 
 
 before_deploy:
-  - ls
   - chmod +x release/set_tags.sh
   - chmod +x release/make_release.sh
-  - sh release/set_tags.sh
+  - sh release/set_tag.sh
   - electron-packager app/ conWhatsapp --platform=linux --arch=x64
   - sh release/make_release.sh
 deploy:
