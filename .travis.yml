@@ -1,10 +1,8 @@
 sudo: required
 dist: trusty
-
 language: node_js
 node_js:
-  - "7"
-
+- '7'
 install:
   - sudo apt-get install jq
   - npm install -g bower gulp electron-packager polymer-cli
@@ -12,24 +10,24 @@ install:
   - cd app/ui
   - bower install
   - cd ../../
-script: 
+script:
   - gulp
 
 
 before_deploy:
-  - gulp
-  - chmod +x release/set_tags.sh
   - chmod +x release/make_release.sh
-  - sh release/set_tags.sh
   - electron-packager app/ conWhatsapp --platform=linux --arch=x64
   - sh release/make_release.sh
 deploy:
-  provider: release
+  provider: releases
   api_key:
-    secure: KpBjMUlS5s9e2RDT5UDZD3Lm2sJ5LOXT9fsgLIohV05aKGkl8BakqCty/ZxNYhgNfcHzVN/hu38Jx8FtOBYJeeUwY10ERImMo+7mS5PPs4dxtvOWGUK+6D0oljZOtu1nloHkymVUUCb0bcL1hOcr0H4i2vK60M8FWBH04IhX8Uw/vhBAHPCDeFHN+sWBrtRoQR9HwWwNDqVYBefFzk3EgEfVMSAPosdvu0kFsNAy76534AaN32y/NZty0Rm2SH9N2UZYelzH9Rl5IYAdmDHGDPlu5WCgRGKj33f4sTGoHvOnE7cq48iW/vXI/4eZ6bc+G7bV7MBjbi+gCfvOwK5j6hDoWfUlsvE+bqrFMHdDgCpp2/oa2GVZ17g8lYeHVRel9/L4p9Wqv0t6W3/8U3L2HErMNgEr96jU9lTZ8QiYnn2hipMzEwkvE5HE9NDNXPe+4tqTxT4tm6u9nnI5ieq5Icm1mAaUxpjVazDH8uTUaNmKqiN+Bc9ahEa2QcC3Jd7L3OsAKoPD6Q2N3FNlJDapuCYNB7FGpRGp+gXAEk5FBA2kZ+RTcNp14lygjbfN5A7bN2X2/ean+nJv+f7UfurWwhnweUyotX9ygde+aOfTx2uYnQe3hrP6ohGFUmEpAQ/no6SRRuXBNms+w+Vm2Ji4neQdmUdUV7n70Zbfh5dYAKo=
+    secure: pRetfBpepIc6Cf9k4gwK9fHTyUNRhZlV0aEX/qGeA9qEA7EJT97ES884Rl5NeQOKXYXJfpGJ5uRs+WCSIUpkoWWuPGeT2Uvlws9ZqnDUa+PDeoFbV8i/ECcyPVJhItjqnGkEXtmLEBGtuYPKqT6AaV6CItt5oQPPXEUXw0D5EeDAuTeAtuePdPHofzOMm9PElTmUHcMaD7DiPqTjZXILbyukzDHwnccaE1yEGup70KK4KERp3yRiwx09X/obRR8DUVjcA9Md90gxle4RhhUDFbyy5zrjWqa9JgFfFqXXIsWp90qXitnOQLjnSQS4j6ITSecsMv9tIwKRaLYe+lu3FafOWHrMkyxZ1ppc1DF5vmqZf7pYxW+9Kv9blnTAsY7d43VI/KrRbDm6UEGduPv25ocIDlUD3A89DQEeTQhxyc89hwNzyd60oVBpL9tNG2mpDaBmK0Qw4PIdYhN0Ftgx0lV8liG6hhHc7rHTt2Z6uDKPAYq/XNntx355pzmZijQoHYAz5td7pFvGUTndN6sv4NPctROqOOzl7xbS2dtJTEjGcX01u01C1J4FnTwbwiEDlLLrwObI1p7Jzh+s3o9HhZvc2w+zbyspcrcYaypB3zYktk7bOOwl6PDeB1HXbnPDNdck2/Ncg4wU4wZpIMtEOuTulqFxfOdKXaJ9l1wwtxk=
   file_glob: true
   file: conWhatsapp-linux-x64.tar.gz
   skip_cleanup: "true"
   on:
     branch: release
     repo: sp-convey/conWhatsapp
+after_success:
+  - chmod +x release/set_tag.sh
+  - sh release/set_tag.sh
