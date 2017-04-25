@@ -4,18 +4,18 @@ language: node_js
 node_js:
 - '7'
 install:
-- sudo apt-get install jq
-- npm install -g bower gulp electron-packager polymer-cli
-- npm install
-- cd app/ui
-- bower install
-- cd ../../
+  - sudo apt-get install jq
+  - npm install -g bower gulp electron-packager polymer-cli
+  - npm install
+  - cd app/ui
+  - bower install
+  - cd ../../
 script:
-- gulp
+  - gulp
+
+
 before_deploy:
-  - chmod +x release/set_tag.sh
   - chmod +x release/make_release.sh
-  - sh release/set_tag.sh
   - electron-packager app/ conWhatsapp --platform=linux --arch=x64
   - sh release/make_release.sh
 deploy:
@@ -26,6 +26,8 @@ deploy:
   file: conWhatsapp-linux-x64.tar.gz
   skip_cleanup: "true"
   on:
-    tags: true
     branch: release
     repo: sp-convey/conWhatsapp
+after_success:
+  - chmod +x release/set_tag.sh
+  - sh release/set_tag.sh
