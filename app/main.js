@@ -108,7 +108,7 @@ function createWindow () {
     });
 
     // open links in external defualt browser
-    webContents.on('new-window', function(event, url){
+    win.webContents.on('new-window', function(event, url){
         event.preventDefault();
         shell.openExternal(url);
     });

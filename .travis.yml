@@ -26,6 +26,7 @@ deploy:
   file: conWhatsapp-linux-x64.tar.gz
   skip_cleanup: "true"
   on:
+    tags: true
     branch: release
     repo: sp-convey/conWhatsapp
 after_success:
