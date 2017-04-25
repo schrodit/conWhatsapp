@@ -1,6 +1,6 @@
 {
   "name": "conWhatsapp",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "whatsapp wrapper for linux",
   "main": "main.js",
   "keywords": [
