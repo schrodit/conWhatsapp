@@ -17,8 +17,6 @@ script:
 
 
 before_deploy:
-  - npm install
-  - bower install
   - gulp
   - chmod +x release/set_tags.sh
   - chmod +x release/make_release.sh
