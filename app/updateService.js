@@ -1,8 +1,6 @@
 'use strict'
 
-const Git = require("nodegit");
-const Repo = Git.Repository;
-const Tag = Git.Tag;
+const fs = require('fs');
 
 const comp = require('compare-versions');
 const request = require('request');
@@ -43,9 +41,21 @@ module.exports = {
             let rel = JSON.parse(body);
 
             //download asset
-            
-            console.log(rel);
+            if(!fs.existsSync('./tmp')) fs.mkdirSync('./tmp');
+            let file = fs.createWriteStream('./tmp/tmp.tar.gz');
 
+            let url = getAssetUrl(rel.assets);
+            options = {
+                url: url,
+                method: 'GET',
+                headers: {
+                    'User-Agent': 'spconvey'
+                }
+            }
+            console.log(url);
+            r.on('response', (res) => {
+                res.pipe(file);
+            })
             
         });
 
@@ -53,4 +63,24 @@ module.exports = {
         //     callback(val);
         // });
     }
+}
+
+function getAssetUrl(assets) {
+    const os = require('os');
+    let url;
+    switch (os.platform()) {
+        case 'linux':
+            assets.forEach((asset) => {
+                if (asset.name == 'conWhatsapp-linux-x64.tar.gz') url = asset.url;
+            });
+            break;
+        case 'win32':
+            assets.forEach((asset) => {
+                if (asset.name == 'conWhatsapp-linux-x64.tar.gz') url = asset.url;
+            });
+            break;
+        default:
+         throw new Error();
+    }
+    return url;
 }
