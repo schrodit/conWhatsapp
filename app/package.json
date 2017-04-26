@@ -9,7 +9,8 @@
   ],
   "author": "Tim Schrodi",
   "license": "MIT",
-  "devDependencies": {
-  },
-  "dependencies": {}
+  "devDependencies": {},
+  "dependencies": {
+    "compare-versions": "^3.0.1"
+  }
 }

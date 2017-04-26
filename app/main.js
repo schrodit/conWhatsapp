@@ -1,10 +1,14 @@
+'use strict'
+
 const {app, BrowserWindow, dialog, Tray, Menu, globalShortcut, ipcMain, shell} = require('electron');
 const fs = require('fs');
 const url = require('url');
 const path = require('path');
 const defaultCfg = require('./default.json');
 
+let startscreen;
 let win;
+let settingsWin;
 let cfg;
 let tray;
 let home;
@@ -73,6 +77,7 @@ function createWindow () {
         show: false
     });
     win.once('ready-to-show', () => {
+        startscreen.destroy();
         win.show();
     });
 
@@ -103,6 +108,7 @@ function createWindow () {
             win.hide();
         } else {
             writeCfg();
+            app.quit();
         }
         return false;
     });
@@ -118,10 +124,16 @@ function createWindow () {
 app.on('ready', ()=> {
     //get home dir
     home = app.getPath('home');
+
+    // show startscreen
+    onOpenStartscreen();
     //register global events
     ipcMain.on('openInBrowser', (event, url) => {
         shell.openExternal(url);
     });
+
+    //create windows
+    createSettingsWin();
     createWindow();
 });
 
@@ -142,8 +154,22 @@ app.on('activate', () => {
     }
 });
 
-onOpenSettings = () => {
-    let settingsWin = new BrowserWindow({ parent: win, frame: false, width: 500, height: 300, modal: true });
+onOpenStartscreen = () => {
+    startscreen = new BrowserWindow({ frame: false, width: 300, height: 350 });
+    startscreen.loadURL(url.format({
+        protocol: 'file',
+        slashes: true,
+        pathname: path.join(app.getAppPath(), 'ui/startscreen.html')
+    }));
+
+    startscreen.webContents.on('did-finish-load', () => {
+        startscreen.webContents.send('startscreen-set-text', 'Starting Whatsapp...');
+    });
+};
+
+
+createSettingsWin = () => {
+    settingsWin = new BrowserWindow({ parent: win, frame: false, show: false, width: 500, height: 300, modal: true });
     settingsWin.loadURL(url.format({
         protocol: 'file',
         slashes: true,
@@ -165,12 +191,12 @@ onOpenSettings = () => {
     ipcMain.on('settings-restore-cfg', (event) => {
         event.returnValue = restoreDefaultCfg();
     });
+}
 
-
-    settingsWin.once('ready-to-show', () => {
-        settingsWin.show();
-    });
+onOpenSettings = () => {
+    settingsWin.show();
 };
+
 onOpenAbout = () => {
     let aboutWin = new BrowserWindow({ parent: win, frame: false, width: 500, height: 300, modal: true });
     aboutWin.loadURL(url.format({
@@ -182,6 +208,7 @@ onOpenAbout = () => {
     //register events
     ipcMain.on('about-close', () => {
         aboutWin.hide();
+        aboutWin.destroy();
     });
 
 
