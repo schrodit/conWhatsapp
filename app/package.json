@@ -11,6 +11,5 @@
   "license": "MIT",
   "devDependencies": {},
   "dependencies": {
-    "compare-versions": "^3.0.1"
   }
 }

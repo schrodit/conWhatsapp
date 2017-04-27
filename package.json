@@ -21,6 +21,7 @@
     "run-sequence": "1.2.2"
   },
   "dependencies": {
+    "compare-versions": "^3.0.1",
     "nodegit": "0.18.2"
   }
 }
