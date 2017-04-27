@@ -52,10 +52,9 @@ module.exports = {
                     'User-Agent': 'spconvey'
                 }
             }
-            console.log(url);
             r.on('response', (res) => {
                 res.pipe(file);
-            })
+            });
             
         });
 
