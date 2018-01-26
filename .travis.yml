@@ -10,8 +10,6 @@ install:
   - cd app/ui
   - bower install
   - cd ../../
-script:
-  - gulp
 
 
 before_deploy:
