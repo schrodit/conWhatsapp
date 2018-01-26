@@ -2,7 +2,7 @@ sudo: required
 dist: trusty
 language: node_js
 node_js:
-- '7'
+- '8'
 install:
   - sudo apt-get install jq
   - npm install -g bower gulp electron-packager polymer-cli
@@ -15,6 +15,10 @@ script:
 
 
 before_deploy:
+  # Set up git user name and tag this commit
+  - git config --local user.name "schrodit"
+  - git config --local user.email "tschrodi96@gmail.com"
+  - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
   - chmod +x release/make_release.sh
   - electron-packager app/ conWhatsapp --platform=linux --arch=x64
   - sh release/make_release.sh
@@ -28,7 +32,4 @@ deploy:
   on:
     tags: true
     branch: master
-    repo: sp-convey/conWhatsapp
-after_success:
-  - chmod +x release/set_tag.sh
-  - sh release/set_tag.sh
+    repo: schrodit/conWhatsapp

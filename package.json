@@ -10,7 +10,7 @@
   "author": "Tim Schrodi",
   "license": "MIT",
   "devDependencies": {
-    "electron": "1.6.5",
+    "electron": "1.6.16",
     "electron-builder": "17.0.1",
     "electron-packager": "8.6.0",
     "gulp": "3.9.1",
