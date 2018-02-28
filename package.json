@@ -19,7 +19,10 @@
   },
   "build": {
     "appId": "cf.convey.conWhatsapp",
-    "files": ["app/**/*", "build/icon.*"],
+    "files": [
+      "app/**/*",
+      "build/icon.*"
+    ],
     "linux": {
       "target": [
         {
@@ -35,7 +38,7 @@
     }
   },
   "devDependencies": {
-    "electron": "1.6.16",
+    "electron": "1.8.2",
     "electron-builder": "17.0.1",
     "gulp": "3.9.1",
     "gulp-bump": "2.7.0",
