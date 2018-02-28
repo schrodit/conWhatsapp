@@ -22,7 +22,6 @@ gulp.task('version:bump', () => {
     gulp.src('./package.json')
     .pipe(bump())
     .pipe(gulp.dest('./'));
-    gulp.src('./app/package.json')
 });
 
 gulp.task('version:tag', () => {
