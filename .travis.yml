@@ -3,6 +3,11 @@ dist: trusty
 language: node_js
 node_js:
 - '8'
+
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install bsdtar
+
 install:
   - sudo apt-get install jq
   - npm install -g bower electron-builder
