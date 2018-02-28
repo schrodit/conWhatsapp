@@ -2,17 +2,41 @@
   "name": "conWhatsapp",
   "version": "1.0.2",
   "description": "whatsapp wrapper for linux",
-  "main": "main.js",
+  "main": "app/main.js",
   "keywords": [
     "electron",
     "whatsapp"
   ],
-  "author": "Tim Schrodi",
+  "author": {
+    "name": "Tim Schrodi",
+    "email": "tschrodi96@gmail.com"
+  },
   "license": "MIT",
+  "scripts": {
+    "build": "bower install",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "cf.convey.conWhatsapp",
+    "files": ["app/**/*", "build/icon.*"],
+    "linux": {
+      "target": [
+        {
+          "target": "tar.gz"
+        },
+        {
+          "target": "pacman"
+        }
+      ],
+      "category": "InstantMessaging",
+      "icon": "app/icon.png",
+      "executableName": "conWhatsapp"
+    }
+  },
   "devDependencies": {
     "electron": "1.6.16",
     "electron-builder": "17.0.1",
-    "electron-packager": "8.6.0",
     "gulp": "3.9.1",
     "gulp-bump": "2.7.0",
     "gulp-eslint": "3.0.1",
@@ -20,5 +44,7 @@
     "gulp-if": "2.0.2",
     "run-sequence": "1.2.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "asar": "^0.14.2"
+  }
 }

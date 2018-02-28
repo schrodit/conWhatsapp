@@ -10,6 +10,7 @@ install:
   - cd app/ui
   - bower install
   - cd ../../
+  - npm run dist
 
 
 before_deploy:
