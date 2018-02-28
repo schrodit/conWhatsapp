@@ -2,6 +2,10 @@
   "name": "conWhatsapp",
   "version": "1.0.4",
   "description": "whatsapp wrapper for linux",
+  "repository": {
+    "url": "https://github.com/schrodit/conWhatsapp"
+  },
+  "homepage": "https://github.com/schrodit/conWhatsapp",
   "main": "app/main.js",
   "keywords": [
     "electron",
