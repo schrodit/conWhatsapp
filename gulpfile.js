@@ -6,6 +6,16 @@ const git = require('gulp-git');
 const bump = require('gulp-bump');
 const eslint = require('gulp-eslint');
 
+const fs = require('fs');
+const semver = require('semver');
+
+let version = "";
+
+function setVersion() {
+    let pjson = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
+    version = semver.inc(pjson.version, 'patch');
+}
+
 gulp.task('lint', () => {
     return gulp.src(['**/*.js','!node_modules/**', '!**/bower_components/**'])
         .pipe(eslint({configFile: '.eslintc.json', fix: true}))
@@ -19,20 +29,27 @@ gulp.task('default', ['lint'], function () {
 });
 
 gulp.task('version:bump', () => {
+    setVersion();
     gulp.src('./package.json')
-    .pipe(bump())
+    .pipe(bump({
+        version: version
+    }))
     .pipe(gulp.dest('./'));
 });
 
+gulp.task('version:commit', () => {
+    return gulp.src('./package.json')
+      .pipe(git.commit(`Version: ${version}`));
+});
+
 gulp.task('version:tag', () => {
-    var pjson = require('./package.json');
-    git.tag(pjson.version, 'Travis bumped new version', function (err) {
+    git.tag(version, 'Travis bumped new version', function (err) {
         if (err) throw err;
     });
 });
 
 gulp.task('version:publish', function() {
-    runSequence('version:bump', 'version:tag');
+    runSequence('version:bump', 'version:commit', 'version:tag');
 });
 
 function isFixed(file) {
