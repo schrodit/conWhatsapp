@@ -12,21 +12,15 @@ install:
   - cd ../../
   - npm run dist
 
-
-before_deploy:
-  # Set up git user name and tag this commit
-  - git config --local user.name "schrodit"
-  - git config --local user.email "tschrodi96@gmail.com"
-  - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
-  - chmod +x release/make_release.sh
-  - electron-packager app/ conWhatsapp --platform=linux --arch=x64
-  - sh release/make_release.sh
 deploy:
   provider: releases
   api_key:
     secure: pRetfBpepIc6Cf9k4gwK9fHTyUNRhZlV0aEX/qGeA9qEA7EJT97ES884Rl5NeQOKXYXJfpGJ5uRs+WCSIUpkoWWuPGeT2Uvlws9ZqnDUa+PDeoFbV8i/ECcyPVJhItjqnGkEXtmLEBGtuYPKqT6AaV6CItt5oQPPXEUXw0D5EeDAuTeAtuePdPHofzOMm9PElTmUHcMaD7DiPqTjZXILbyukzDHwnccaE1yEGup70KK4KERp3yRiwx09X/obRR8DUVjcA9Md90gxle4RhhUDFbyy5zrjWqa9JgFfFqXXIsWp90qXitnOQLjnSQS4j6ITSecsMv9tIwKRaLYe+lu3FafOWHrMkyxZ1ppc1DF5vmqZf7pYxW+9Kv9blnTAsY7d43VI/KrRbDm6UEGduPv25ocIDlUD3A89DQEeTQhxyc89hwNzyd60oVBpL9tNG2mpDaBmK0Qw4PIdYhN0Ftgx0lV8liG6hhHc7rHTt2Z6uDKPAYq/XNntx355pzmZijQoHYAz5td7pFvGUTndN6sv4NPctROqOOzl7xbS2dtJTEjGcX01u01C1J4FnTwbwiEDlLLrwObI1p7Jzh+s3o9HhZvc2w+zbyspcrcYaypB3zYktk7bOOwl6PDeB1HXbnPDNdck2/Ncg4wU4wZpIMtEOuTulqFxfOdKXaJ9l1wwtxk=
   file_glob: true
-  file: conWhatsapp-linux-x64.tar.gz
+  file: 
+    - dist/*.tar.gz
+    - dist/*.pacman
+    - dist/*.deb
   skip_cleanup: "true"
   on:
     tags: true

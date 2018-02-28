@@ -30,6 +30,9 @@
         },
         {
           "target": "pacman"
+        },
+        {
+          "target": "deb"
         }
       ],
       "category": "InstantMessaging",
@@ -47,7 +50,5 @@
     "gulp-if": "2.0.2",
     "run-sequence": "1.2.2"
   },
-  "dependencies": {
-    "asar": "^0.14.2"
-  }
+  "dependencies": {}
 }
