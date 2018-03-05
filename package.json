@@ -18,14 +18,13 @@
   "license": "MIT",
   "scripts": {
     "build": "bower install",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-builder --dir"
   },
   "build": {
     "appId": "cf.convey.conWhatsapp",
     "files": [
       "app/**/*",
-      "build/icon.*"
+      "app/icon.*"
     ],
     "linux": {
       "target": [
