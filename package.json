@@ -19,7 +19,8 @@
   "scripts": {
     "bump": "gulp version:publish",
     "build": "bower install",
-    "dist": "electron-builder --dir"
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "build": {
     "appId": "cf.convey.conWhatsapp",

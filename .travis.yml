@@ -15,6 +15,7 @@ install:
   - cd app/ui
   - bower install
   - cd ../../
+  - npm run pack
   - npm run dist
 
 deploy:
@@ -29,5 +30,3 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-    branch: master
-    repo: schrodit/conWhatsapp
