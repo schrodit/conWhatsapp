@@ -17,6 +17,7 @@
   },
   "license": "MIT",
   "scripts": {
+    "bump": "gulp version:publish",
     "build": "bower install",
     "dist": "electron-builder --dir"
   },
